@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maqueta de paso · Estudio 01</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eeebe4;color:#292b27;font-family:Segoe UI,Arial,sans-serif}header{padding:28px 36px 22px;border-bottom:1px solid #d2d0c7;display:flex;align-items:end;justify-content:space-between;gap:24px}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6a6e61}h1{font-family:Georgia,serif;font-weight:400;font-size:34px;margin:8px 0 0}.version{font-size:12px;letter-spacing:1px;padding:8px 12px;border:1px solid #babeb0;border-radius:20px}main{display:grid;grid-template-columns:minmax(0,1fr) 285px;min-height:640px}.stage{position:relative;min-width:0;background:radial-gradient(ellipse at 50% 35%,#e7e7e7 0%,#bcbcbc 58%,#999999 100%)}canvas{display:block;width:100%;height:620px;touch-action:none;cursor:grab}.views{display:flex;flex-wrap:wrap;gap:6px;position:absolute;left:24px;top:20px}button{font:inherit;font-size:12px;padding:9px 13px;color:#394034;background:#f7f6f0e8;border:1px solid #c3c6b7;border-radius:5px;cursor:pointer}button[aria-pressed=true]{color:#fff;background:#465342;border-color:#465342}.hint{position:absolute;bottom:20px;left:24px;font-size:12px;color:#303030;pointer-events:none}.dimension{position:absolute;right:24px;bottom:20px;font:14px Georgia,serif;color:#303030}aside{padding:28px 24px;border-left:1px solid #d2d0c7;background:#f5f3ed}h2{font:23px Georgia,serif;margin:0 0 14px}p{font-size:13px;line-height:1.6;color:#63675c}.measure{font:30px Georgia,serif;margin-top:22px}.measure span{font:12px Segoe UI,sans-serif;color:#62675c;display:block;margin-top:8px}.line{border-top:1px solid #d5d7cb;margin:24px 0}.layers label{display:flex;gap:9px;font-size:13px;margin:12px 0;align-items:center}.layers input{accent-color:#465342}img{width:100%;height:155px;object-fit:contain;background:#fff;margin-top:12px}footer{border-top:1px solid #d2d0c7;padding:16px 36px;font-size:12px;color:#676c5e;display:flex;justify-content:space-between;gap:20px}.error{padding:30px;color:#9a331d}button:focus-visible,input:focus-visible{outline:3px solid #698ab2;outline-offset:3px}@media(max-width:760px){header{padding:20px;align-items:start}h1{font-size:27px}main{display:block}aside{border-left:0;border-top:1px solid #d2d0c7}canvas{height:460px}footer{padding:20px;flex-wrap:wrap}.version{white-space:nowrap;font-size:10px}.views{left:12px;top:12px}.hint{left:12px;font-size:11px}.dimension{right:12px}.measure{margin-top:12px}}
+</style>
+<header><div><div class="eyebrow">Estudio de volumen / Semana Santa</div><h1>Un paso en miniatura</h1></div><div class="version" id="live-status" role="status" aria-live="polite">Conectando con el modelo…</div></header>
+<main>
+<div class="stage">
+<canvas id="model" aria-label="Modelo tridimensional del paso barroco, con canasto, cuatro respiraderos calados y remates. Arrastra para girar y usa la rueda para ampliar."></canvas>
+<div class="views" aria-label="Vistas del modelo"><button data-view="perspectiva" aria-pressed="true">Perspectiva</button><button data-view="frente" aria-pressed="false">Frente</button><button data-view="lateral" aria-pressed="false">Lateral</button><button data-view="planta" aria-pressed="false">Planta</button></div>
+<div class="hint">Arrastra para girar · Rueda para ampliar</div><div class="dimension">146,7 × 88 mm</div>
+</div>
+<aside>
+<h2>Barroco, a pequeña escala</h2>
+<p>Canasto con panza, molduras escalonadas, volutas de acanto y medallones ovalados. Respiraderos con calados reales en las cuatro caras.</p>
+<div class="measure"><span id="measurements" style="font:inherit;color:inherit;display:inline">146,7 × 88 × —</span><b id="height" hidden></b><span>milímetros · largo × ancho × alto</span></div>
+<div class="line"></div>
+<div class="eyebrow">Elementos del conjunto</div>
+<div class="layers"><label><input type="checkbox" data-layer="upper" checked> Canasto y remates</label><label><input type="checkbox" data-layer="table" checked> Mesa y molduras</label><label><input type="checkbox" data-layer="lower" checked> Respiraderos</label></div>
+<div class="line"></div>
+<div class="eyebrow">Frente de referencia</div><img src="../maqueta.jfif" alt="Fotografía de la talla original del frente, sobre un caballete de trabajo.">
+<p>Interpretación ornamental. Los laterales y la trasera desarrollan los motivos del frente. El caballete de la foto queda fuera del diseño.</p>
+</aside>
+</main>
+<footer><span>PLA · Prusa MK3S+ · Boquilla asumida: 0,4 mm</span><span>Actualizado: <time id="updated">—</time> · Fuente: paso_completo.glb</span></footer>
+<script src="visor.js"></script></html>
+
+
