@@ -1,0 +1,11 @@
+.deps/
+.venv/
+__pycache__/
+*.pyc
+modelo_paso/*.tmp
+modelo_paso/paso_completo_revision.stl
+modelo_paso/vista_*.png
+modelo_paso/luz_fija.png
+modelo_paso/celosia_frente.png
+comprobar_visor.cjs
+.publicacion/

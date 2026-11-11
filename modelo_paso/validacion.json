@@ -1,0 +1,102 @@
+{
+  "unidades": "mm",
+  "fase": "Diseño completo, pendiente de revisión estética y despiece",
+  "referencia": "maqueta.jfif; laterales y trasera interpretados",
+  "dimensiones_objetivo": [
+    146.7,
+    88.0
+  ],
+  "pared_nominal_mm": 1.6,
+  "relieve_principal_mm": 0.85,
+  "piezas_logicas": [
+    {
+      "nombre": "Mesa y molduras",
+      "triangulos": 1836,
+      "malla_cerrada": true,
+      "volumen_mm3": 26863.85,
+      "cuerpos": 1
+    },
+    {
+      "nombre": "Canasto tallado",
+      "triangulos": 428438,
+      "malla_cerrada": true,
+      "volumen_mm3": 30369.28,
+      "cuerpos": 12
+    },
+    {
+      "nombre": "Tablero superior",
+      "triangulos": 188,
+      "malla_cerrada": true,
+      "volumen_mm3": 16079.17,
+      "cuerpos": 1
+    },
+    {
+      "nombre": "Respiradero frente",
+      "triangulos": 85368,
+      "malla_cerrada": true,
+      "volumen_mm3": 3031.88,
+      "cuerpos": 6
+    },
+    {
+      "nombre": "Respiradero trasera",
+      "triangulos": 86724,
+      "malla_cerrada": true,
+      "volumen_mm3": 3048.21,
+      "cuerpos": 2
+    },
+    {
+      "nombre": "Respiradero derecho",
+      "triangulos": 132938,
+      "malla_cerrada": true,
+      "volumen_mm3": 4755.68,
+      "cuerpos": 3
+    },
+    {
+      "nombre": "Respiradero izquierdo",
+      "triangulos": 132650,
+      "malla_cerrada": true,
+      "volumen_mm3": 4765.42,
+      "cuerpos": 3
+    },
+    {
+      "nombre": "Cuatro remates",
+      "triangulos": 2864,
+      "malla_cerrada": true,
+      "volumen_mm3": 381.48,
+      "cuerpos": 4
+    }
+  ],
+  "celosia": {
+    "motivo": "estrellas de ocho puntas y rombos",
+    "paso_mm": 5.2,
+    "espesor_mm": 1.2,
+    "nervios_aprox_mm": [
+      0.9,
+      1.0
+    ],
+    "posicion": "detrás de la talla de los cuatro respiraderos"
+  },
+  "dimensiones_reales_ancho_largo_alto_mm": [
+    88.0,
+    146.7,
+    67.693
+  ],
+  "caja_mm": [
+    [
+      -44.0,
+      -73.35,
+      2.807
+    ],
+    [
+      44.0,
+      73.35,
+      70.5
+    ]
+  ],
+  "triangulos_conjunto": 868400,
+  "malla_conjunto_cerrada": true,
+  "cuerpos_conjunto": 1,
+  "cavidades_cerradas": 151,
+  "volumen_conjunto_mm3": 86710.82,
+  "nota": "No se ha laminado ni comprobado físicamente. STL de revisión, no despiece de impresión."
+}

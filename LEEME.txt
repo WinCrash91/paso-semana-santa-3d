@@ -1,0 +1,41 @@
+MAQUETA DE PASO DE SEMANA SANTA
+
+Visor en directo: http://127.0.0.1:8765/modelo_paso/visor.html
+Para iniciar el servidor y abrirlo, ejecutar Abrir visor.cmd.
+El visor lee modelo_paso/paso_completo.glb y comprueba los cambios cada segundo.
+Conserva el giro, el zoom y las piezas visibles al actualizarse.
+Funciona localmente; no envía el modelo a ningún servicio.
+
+Modelo editable: generar_paso.py
+Regenerar: ejecutar Actualizar modelo.cmd.
+Cada ejecución sustituye los mismos archivos. No se conserva un historial.
+El GLB se publica al terminar, para evitar la lectura de archivos incompletos.
+
+Dimensiones exteriores: 146,7 mm de largo x 88 mm de ancho x aprox. 67,7 mm de alto.
+El largo corresponde a la altura exterior de un iPhone 13 Pro.
+PLA / Prusa MK3S+ / boquilla supuesta de 0,4 mm.
+Pared nominal: 1,6 mm. Relieves principales de aproximadamente 0,85 a 1,5 mm.
+Rizos compactos: radios principales de 1,6 a 3,4 mm, con límite de diseño de 6 mm.
+Respiraderos con calados orgánicos entre hojas, cartela y caídas de esquina.
+Detrás de la talla: celosía árabe de estrellas de ocho puntas y rombos, con
+repetición de 5,2 mm, espesor de 1,2 mm y nervios de aproximadamente 0,9–1 mm.
+Son criterios de diseño, pendientes de prueba física y laminado.
+
+Contenido: mesa y molduras, canasto tallado, tablero superior, respiraderos de
+las cuatro caras y cuatro remates. Sin figuras ni caballete de taller.
+La foto solo muestra un frente: laterales, trasera y cubierta se interpretan.
+Los medallones quedan sin insignias para no inventar una advocación.
+
+Archivos:
+- paso_completo.glb: geometría actual que se ve en el visor (glTF, metros).
+- paso_completo_revision.stl: conjunto de revisión, unidades mm.
+- validacion.json: comprobación de dimensiones, mallas y continuidad.
+
+El STL del conjunto aún no es un despiece de impresión. Tras revisar la forma,
+separar tablero, canasto y respiraderos, preparar uniones y orientar las piezas
+para colocar las caras ornamentadas hacia arriba cuando sea posible.
+No se ha generado G-code ni establecido un perfil de impresión definitivo.
+
+Fuentes de las medidas de referencia:
+Apple: https://support.apple.com/es-la/111871
+Prusa: https://www.prusa3d.com/product/original-prusa-i3-mk3s-10th-anniversary-edition-3d-printer/
