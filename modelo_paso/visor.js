@@ -3,6 +3,9 @@
 'use strict';
 const canvas=document.getElementById('model');
 const status=document.getElementById('live-status');
+const live=['localhost','127.0.0.1','[::1]'].includes(location.hostname);
+const reference=document.querySelector('.reference');
+if(reference&&live){reference.hidden=false;const img=reference.querySelector('img');img.src=img.dataset.localSrc;}
 const gl=canvas.getContext('webgl',{antialias:true,preserveDrawingBuffer:true});
 if(!gl){status.textContent='WebGL no disponible en este navegador';return;}
 const vs=`attribute vec3 pos;attribute vec3 normal;uniform mat4 view;uniform mat4 lightView;uniform vec3 shift;varying vec3 n;varying vec4 shadowPos;void main(){n=normal;shadowPos=lightView*vec4(pos+shift,1.);gl_Position=view*vec4(pos+shift,1.);}`;
@@ -52,11 +55,33 @@ function render(){
  window.PASO_READY=objects.length>0;
 }
 let key='',busy=false,reloads=0;
-async function check(){if(busy||document.hidden)return;busy=true;try{const response=await fetch('/estado',{cache:'no-store'});if(!response.ok)throw Error('Servidor no disponible');const s=await response.json();if(s.key!==key){status.textContent='Actualizando modelo…';const res=await fetch('paso_completo.glb?t='+encodeURIComponent(s.key),{cache:'no-store'});if(!res.ok)throw Error('Archivo 3D no disponible');const decoded=decodeGLB(await res.arrayBuffer());const next=decoded.objects.map(o=>{const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,o.flat,gl.STATIC_DRAW);delete o.flat;return {...o,buffer};});for(const o of objects)gl.deleteBuffer(o.buffer);objects=next;bounds=decoded.bounds;shadowDirty=true;key=s.key;reloads++;const dims=bounds[1].map((v,i)=>v-bounds[0][i]);document.getElementById('height').textContent=dims[2].toFixed(1).replace('.',',');document.getElementById('measurements').textContent=[dims[1],dims[0],dims[2]].map(x=>x.toFixed(1).replace('.',',')).join(' × ');render();document.getElementById('updated').textContent=new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}status.textContent='● Conectado · Cambios automáticos';status.dataset.state='ok';}catch(error){status.textContent=objects.length?'● Reconectando · Se conserva la última vista':'No se pudo cargar el modelo: '+error.message;status.dataset.state='error';}finally{busy=false;}}
+async function check(){
+ if(busy||document.hidden||(!live&&objects.length))return;
+ busy=true;
+ try{
+  let s={key:String(Date.now())};
+  if(live){const response=await fetch('/estado',{cache:'no-store'});if(!response.ok)throw Error('Servidor no disponible');s=await response.json();}
+  if(s.key!==key){
+   status.textContent=objects.length?'Actualizando modelo…':'Cargando modelo…';
+   const res=await fetch('paso_completo.glb?t='+encodeURIComponent(s.key),{cache:'no-store'});
+   if(!res.ok)throw Error('Archivo 3D no disponible');
+   const decoded=decodeGLB(await res.arrayBuffer());
+   const next=decoded.objects.map(o=>{const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,o.flat,gl.STATIC_DRAW);delete o.flat;return {...o,buffer};});
+   for(const o of objects)gl.deleteBuffer(o.buffer);
+   objects=next;bounds=decoded.bounds;shadowDirty=true;key=s.key;reloads++;
+   const dims=bounds[1].map((v,i)=>v-bounds[0][i]);
+   document.getElementById('height').textContent=dims[2].toFixed(1).replace('.',',');
+   document.getElementById('measurements').textContent=[dims[1],dims[0],dims[2]].map(x=>x.toFixed(1).replace('.',',')).join(' × ');
+   render();document.getElementById('updated').textContent=new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  }
+  status.textContent=live?'● Conectado · Cambios automáticos':'Modelo 3D · Interactivo';status.dataset.state='ok';
+ }catch(error){status.textContent=objects.length?'● Reconectando · Se conserva la última vista':'No se pudo cargar el modelo: '+error.message;status.dataset.state='error';}
+ finally{busy=false;}
+}
 let dragging=false,lastX=0,lastY=0;canvas.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);canvas.style.cursor='grabbing';});canvas.addEventListener('pointermove',e=>{if(!dragging)return;yaw-=(e.clientX-lastX)*0.008;pitch=Math.max(-1.5,Math.min(1.57,pitch+(e.clientY-lastY)*0.008));lastX=e.clientX;lastY=e.clientY;document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'));render();});canvas.addEventListener('pointerup',()=>{dragging=false;canvas.style.cursor='grab';});canvas.addEventListener('pointercancel',()=>{dragging=false;});canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(0.55,Math.min(3,zoom*Math.exp(-e.deltaY*0.001)));render();},{passive:false});
 const views={perspectiva:[0.72,0.46],frente:[0,0],lateral:[Math.PI/2,0],planta:[0,Math.PI/2]};document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{[yaw,pitch]=views[b.dataset.view];zoom=b.dataset.view==='frente'?1.75:1.25;document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();}));document.querySelectorAll('[data-layer]').forEach(c=>c.addEventListener('change',()=>{visible[c.dataset.layer]=c.checked;shadowDirty=true;render();}));window.addEventListener('resize',render);document.addEventListener('visibilitychange',()=>{if(!document.hidden)check();});
 window.PASO_VIEW={render,get:()=>({yaw,pitch,zoom,visible,reloads,objects:objects.length,bounds}),set:(y,p,z)=>{yaw=y;pitch=p;zoom=z;render();}};
-render();check();setInterval(check,1000);
+render();check();if(live)setInterval(check,1000);
 })();
 
 
