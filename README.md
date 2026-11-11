@@ -6,6 +6,12 @@ Maqueta paramétrica de un paso barroco, desarrollada a partir de la fotografía
 
 ![Vista de la maqueta](modelo_paso/preview.png)
 
+## Visor online
+
+[Abrir el modelo 3D en el navegador](https://wincrash91.github.io/paso-semana-santa-3d/).
+
+No requiere instalación. Permite girar, ampliar y mostrar u ocultar partes del paso. La fotografía de referencia solo se carga en el visor local.
+
 ## Visor local
 
 Se necesita Node.js. Desde la carpeta del proyecto:
