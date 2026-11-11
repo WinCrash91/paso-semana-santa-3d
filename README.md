@@ -47,7 +47,7 @@ El archivo `generar_paso.py` contiene las medidas, la geometría y la ornamentac
 - `modelo_paso/paso_completo.glb`: conjunto para visualizar; unidades glTF en metros.
 - `modelo_paso/paso_completo_revision.stl`: conjunto de revisión en milímetros. Si se distribuye comprimido, extraer el ZIP del mismo nombre.
 - `modelo_paso/validacion.json`: dimensiones, continuidad y comprobaciones geométricas.
-- `maqueta.jfif`: referencia del frente. Laterales, trasera y cubierta son una interpretación.
+- La fotografía original de referencia se conserva solo en el espacio de trabajo local y no se distribuye en este repositorio. Laterales, trasera y cubierta son una interpretación.
 
 La talla utiliza rizos compactos y calados orgánicos. La celosía tiene una repetición de 5,2 mm, espesor de 1,2 mm y nervios de aproximadamente 0,9–1 mm.
 
